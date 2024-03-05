@@ -1,3 +1,5 @@
+from metody import bisekcja
+
 menu = """
 Wybierz jedną z funkcji:
 1 - funkcja wielomianowa
@@ -12,7 +14,7 @@ kryterium = ""
 kryt = """
 Wybierz kryterium stopu algorytmu:
 d - osiągnięcie zadanej dokładności obliczeń
-i - wykonanie określonej przez użytkownika liczby iteracji.
+i - wykonanie określonej przez użytkownika liczby iteracji
 """
 iteracje = 0
 dokladnosc = 0
@@ -62,3 +64,4 @@ while True:
                 except ValueError:
                     print("Wartosc dokladnosci musi byc liczba")
 
+print(bisekcja("1", 0, 10, 0, 0.001))
