@@ -1,4 +1,4 @@
-from metody import bisekcja
+from metody import bisekcja, siecznych
 
 menu = """
 Wybierz jedną z funkcji:
@@ -17,14 +17,14 @@ d - osiągnięcie zadanej dokładności obliczeń
 i - wykonanie określonej przez użytkownika liczby iteracji
 """
 iteracje = 0
-dokladnosc = 0
+eps = 0
 
 while True:
     print(menu)
-    funkcja = input("Wpisz 1, 2, 3, 4 lub 5 żeby zakończyć: ")
-    if funkcja == "5":
+    wybor = input("Wpisz 1, 2, 3, 4 lub 5 żeby zakończyć: ")
+    if wybor == "5":
         break
-    elif funkcja in "1234":
+    elif wybor in "1234":
         while True:
             try:
                 poczatek = float(input("Wprowadz wartosc poczatku przedzialu: "))
@@ -50,7 +50,7 @@ while True:
             while True:
                 try:
                     iteracje = abs(int(input("Wprowadz liczbe iteracji: ")))
-                    dokladnosc = 0
+                    eps = 0
                     break
                 except ValueError:
                     print("Liczba iteracji musi byc dodatnia i calkowita")
@@ -58,10 +58,16 @@ while True:
         elif kryterium == "d":
             while True:
                 try:
-                    dokladnosc = abs(float(input("Wprowadz wartosc dokladnosci: ")))
+                    eps = abs(float(input("Wprowadz wartosc dokladnosci: ")))
                     iteracje = 0
                     break
                 except ValueError:
                     print("Wartosc dokladnosci musi byc liczba")
 
-print(bisekcja("1", 0, 10, 0, 0.001))
+        bis = bisekcja(wybor, poczatek, koniec, iteracje, eps)
+        sie = siecznych(wybor, poczatek, koniec, iteracje, eps)
+
+        if bis == False:
+            print("Funkcja nie spelnia podstawowego warunku: f(a)f(b) < 0")
+    else:
+        print("Wybrano nieprawidlowa wartosc")
