@@ -1,11 +1,12 @@
 import numpy as np
 
 is_input = False
+coeffs = []
 
 
 def poly_by_hand(x):
     global is_input
-    coeffs = []
+    global coeffs
     if not is_input:
         is_input = True
 
@@ -14,6 +15,8 @@ def poly_by_hand(x):
 
         for i in range(size):
             coeffs[i] = float(input("Podaj wartość kolejnych współczynników: "))
+
+        print(coeffs)
 
     return horner(coeffs, x)
 
