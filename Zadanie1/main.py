@@ -1,30 +1,31 @@
 from metody import bisekcja, siecznych
 
 menu = """
-Wybierz jedną z funkcji:
-1 - funkcja wielomianowa
-2 - funkcja trygonometryczna
-3 - funkcja wykładnicza
-4 - funkcja złożona
-5 - wyjście
+    Wybierz jedną z funkcji:
+        0 - funkcja wielomianowa "z ręki"
+        1 - funkcja wielomianowa
+        2 - funkcja trygonometryczna
+        3 - funkcja wykładnicza
+        4 - funkcja złożona
+        5 - wyjście
 """
 poczatek = 0
 koniec = 0
 kryterium = ""
 kryt = """
-Wybierz kryterium stopu algorytmu:
-d - osiągnięcie zadanej dokładności obliczeń
-i - wykonanie określonej przez użytkownika liczby iteracji
+    Wybierz kryterium stopu algorytmu:
+        d - osiągnięcie zadanej dokładności obliczeń
+        i - wykonanie określonej przez użytkownika liczby iteracji
 """
 iteracje = 0
 eps = 0
 
 while True:
     print(menu)
-    wybor = input("Wpisz 1, 2, 3, 4 lub 5 żeby zakończyć: ")
+    wybor = input("Wpisz 0, 1, 2, 3, 4 lub 5 żeby zakończyć: ")
     if wybor == "5":
         break
-    elif wybor in "1234":
+    elif wybor in "01234":
         while True:
             try:
                 poczatek = float(input("Wprowadz wartosc poczatku przedzialu: "))
@@ -69,5 +70,6 @@ while True:
 
         if bis == False:
             print("Funkcja nie spelnia podstawowego warunku: f(a)f(b) < 0")
+
     else:
         print("Wybrano nieprawidlowa wartosc")
