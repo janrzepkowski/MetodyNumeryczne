@@ -1,4 +1,9 @@
+import pylab as pl
+
 from metody import bisekcja, siecznych
+from funkcje import wartosc
+import numpy as np
+from matplotlib import pyplot as plt
 
 menu = """
 Wybierz jedną z funkcji:
@@ -19,6 +24,20 @@ Wybierz kryterium stopu algorytmu:
 """
 iteracje = 0
 eps = 0
+
+
+def plot_title(wybor):
+    if wybor == "0":
+        return "funkcja wielomianowa z ręki"
+    elif wybor == "1":
+        return "funkcja wielomianowa"
+    elif wybor == "2":
+        return "funkcja trygonometryczna"
+    elif wybor == "3":
+        return "funkcja wykładnicza"
+    elif wybor == "4":
+        return "funkcja złożona"
+
 
 while True:
     print(menu)
@@ -68,9 +87,25 @@ while True:
                     print("Wartosc dokladnosci musi byc liczba")
 
         bis = bisekcja(wybor, poczatek, koniec, iteracje, eps)
+        print("Wartość x0 znalezniona przy użyciu metod bisekcji: " + str(bis))
         sie = siecznych(wybor, poczatek, koniec, iteracje, eps)
+        print("Wartość x0 znalezniona przy użyciu metod siecznych: " + str(sie))
 
-        if bis == False:
+        x = np.linspace(poczatek, koniec, 100)
+
+        plt.plot(x, wartosc(wybor, x), color='red', label='wykres funkcji')
+        plt.plot(bis, wartosc(wybor, bis), color='blue', marker='o', label='met. bisekcji')
+        plt.plot(sie, wartosc(wybor, sie), color='green', marker='o', label='met. siecznych')
+        plt.grid()
+
+        pl.title(plot_title(wybor))
+        plt.xlabel("x")
+        plt.ylabel("f(x)")
+        plt.legend(loc='lower right', framealpha=1, frameon=True)
+        plt.tight_layout()
+        plt.show()
+
+        if not bis or not sie:
             print("Funkcja nie spelnia podstawowego warunku: f(a)f(b) < 0")
 
     else:

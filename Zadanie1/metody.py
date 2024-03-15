@@ -1,6 +1,7 @@
 from funkcje import wartosc
 
 
+
 def bisekcja(wybor, poczatek, koniec, iteracje, eps):
     x0 = 0
 

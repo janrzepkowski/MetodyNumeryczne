@@ -23,23 +23,19 @@ def poly_by_hand(x):
 
 def polynomial(x):
     coefficients = [1, 0, -60]
-    y = horner(coefficients, x)
-    return y
+    return horner(coefficients, x)
 
 
 def trigonometric(x):
-    y = 4 * np.sin(x) - 2 * np.cos(x)
-    return y
+    return 4 * np.sin(x) - 2 * np.cos(x)
 
 
 def exponential(x):
-    y = 2 ** x - 4 ** x
-    return y
+    return 2 ** x - 4 ** x
 
 
 def rational(x):
-    y = 2 * x ** 2 - np.cos(x) + 4 ** x
-    return y
+    return 2 * x ** 2 - np.cos(x) + 4 ** x
 
 
 def horner(coefficients, x):
@@ -50,15 +46,14 @@ def horner(coefficients, x):
 
 
 def wartosc(wybor, x):
-    y = 0
     if wybor == "0":
-        y = poly_by_hand(x)
+        return poly_by_hand(x)
     elif wybor == "1":
-        y = polynomial(x)
+        return polynomial(x)
     elif wybor == "2":
-        y = trigonometric(x)
+        return trigonometric(x)
     elif wybor == "3":
-        y = exponential(x)
+        return exponential(x)
     elif wybor == "4":
-        y = rational(x)
-    return y
+        return rational(x)
+    return 0
