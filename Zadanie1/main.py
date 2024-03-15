@@ -26,17 +26,33 @@ iteracje = 0
 eps = 0
 
 
-def plot_title(wybor):
-    if wybor == "0":
+def plot_title(wybor_p):
+    if wybor_p == "0":
         return "funkcja wielomianowa z ręki"
-    elif wybor == "1":
-        return "funkcja wielomianowa"
-    elif wybor == "2":
-        return "funkcja trygonometryczna"
-    elif wybor == "3":
-        return "funkcja wykładnicza"
-    elif wybor == "4":
-        return "funkcja złożona"
+    elif wybor_p == "1":
+        return "funkcja wielomianowa: f(x) = x^2 - 60"
+    elif wybor_p == "2":
+        return "funkcja trygonometryczna: f(x) = 4*sinx - 2*cosx"
+    elif wybor_p == "3":
+        return "funkcja wykładnicza: f(x) = 2^x - 4^x"
+    elif wybor_p == "4":
+        return "funkcja złożona: f(x) = 2*x^2 - cos(x) + 4^x"
+
+
+def plot_draw(wybor_p, bis_p, sie_p):
+    x = np.linspace(poczatek, koniec, 100)
+
+    plt.plot(x, wartosc(wybor_p, x), color='red', label='wykres funkcji')
+    plt.plot(bis_p, wartosc(wybor_p, bis_p), color='blue', marker='o', label='met. bisekcji')
+    plt.plot(sie_p, wartosc(wybor_p, sie_p), color='green', marker='o', label='met. siecznych')
+    plt.grid()
+
+    pl.title(plot_title(wybor_p))
+    plt.xlabel("x")
+    plt.ylabel("f(x)")
+    plt.legend(loc='lower right', framealpha=1, frameon=True)
+    plt.tight_layout()
+    plt.show()
 
 
 while True:
@@ -91,19 +107,7 @@ while True:
         sie = siecznych(wybor, poczatek, koniec, iteracje, eps)
         print("Wartość x0 znalezniona przy użyciu metod siecznych: " + str(sie))
 
-        x = np.linspace(poczatek, koniec, 100)
-
-        plt.plot(x, wartosc(wybor, x), color='red', label='wykres funkcji')
-        plt.plot(bis, wartosc(wybor, bis), color='blue', marker='o', label='met. bisekcji')
-        plt.plot(sie, wartosc(wybor, sie), color='green', marker='o', label='met. siecznych')
-        plt.grid()
-
-        pl.title(plot_title(wybor))
-        plt.xlabel("x")
-        plt.ylabel("f(x)")
-        plt.legend(loc='lower right', framealpha=1, frameon=True)
-        plt.tight_layout()
-        plt.show()
+        plot_draw(wybor, bis, sie)
 
         if not bis or not sie:
             print("Funkcja nie spelnia podstawowego warunku: f(a)f(b) < 0")
