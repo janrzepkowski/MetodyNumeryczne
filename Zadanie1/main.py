@@ -43,8 +43,8 @@ def plot_draw(wybor_p, bis_p, sie_p):
     x = np.linspace(poczatek, koniec, 100)
 
     plt.plot(x, wartosc(wybor_p, x), color='red', label='wykres funkcji')
-    plt.plot(bis_p, wartosc(wybor_p, bis_p), color='blue', marker='o', label='met. bisekcji')
     plt.plot(sie_p, wartosc(wybor_p, sie_p), color='green', marker='o', label='met. siecznych')
+    plt.plot(bis_p, wartosc(wybor_p, bis_p), markeredgecolor='blue', markerfacecolor='none', marker='o', label='met. bisekcji')
     plt.grid()
 
     pl.title(plot_title(wybor_p))
