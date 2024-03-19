@@ -16,12 +16,14 @@ def bisekcja(wybor, poczatek, koniec, iteracje, eps):
                 if wartosc(wybor, x0) == 0:
                     print("Korzystajac z metody bisekcji udalo sie znalezc rozwiazanie, "
                           "po " + str(n + 1) + " iteracjach")
+                    return x0
                 elif wartosc(wybor, x0) * wartosc(wybor, koniec) < 0:
                     poczatek = x0
                 else:
                     koniec = x0
                 n += 1
-            print("Korzystajac z metody bisekcji udalo sie znalezc rozwiazanie, po " + str(n) + " iteracjach")
+            print("Korzystajac z metody bisekcji udalo sie znaleźć przybliżone rozwiazanie, "
+                  "po " + str(n) + " iteracjach")
             return x0
 
         else:
@@ -39,9 +41,8 @@ def bisekcja(wybor, poczatek, koniec, iteracje, eps):
 
             # Oszacowanie dokladnosci wyniku: Wariant B: |f(xi)| < ε
             eps = abs(wartosc(wybor, x0))
-            print("Korzystajac z metody bisekcji znalezione rozwiazanie po " + str(iteracje) +
+            print("Korzystajac z metody bisekcji udalo sie znaleźć przybliżone rozwiazanie po " + str(iteracje) +
                   " iteracjach z dokladnoscia ε = " + str(eps))
-
             return x0
 
 
@@ -71,7 +72,8 @@ def siecznych(wybor, poczatek, koniec, iteracje, eps):
                 else:
                     koniec = x0
                 n += 1
-            print("Korzystajac z metody siecznych udalo sie znalezc rozwiazanie, po " + str(n) + " iteracjach")
+            print("Korzystajac z metody siecznych udalo sie znaleźć przybliżone rozwiazanie po "
+                  + str(n) + " iteracjach")
             return x0
 
         else:  # i - wykonanie określonej przez użytkownika liczby iteracji
@@ -87,6 +89,6 @@ def siecznych(wybor, poczatek, koniec, iteracje, eps):
                 else:
                     koniec = x0
             eps = abs(wartosc(wybor, x0))  # Oszacowanie dokladnosci wyniku: Wariant B: |f(xi)| < ε
-            print("Korzystajac z metody siecznych znalezione rozwiazanie po " + str(iteracje) +
+            print("Korzystajac z metody siecznych udalo sie znaleźć przybliżone rozwiazanie po " + str(iteracje) +
                   " iteracjach z dokladnoscia ε = " + str(eps))
             return x0
