@@ -109,7 +109,7 @@ while True:
 
         plot_draw(wybor, bis, sie)
 
-        if not bis or not sie:
+        if wartosc(wybor, poczatek) * wartosc(wybor, koniec) >= 0:
             print("Funkcja nie spelnia podstawowego warunku: f(a)f(b) < 0")
 
     else:
