@@ -10,7 +10,7 @@ def bisekcja(wybor, poczatek, koniec, iteracje, eps):
     else:
         if iteracje == 0:
             # d - osiągnięcie zadanej dokładności obliczeń
-            n = 1
+            n = 0
             while abs(koniec - poczatek) >= eps and n < 1000:
                 x0 = (poczatek + koniec) / 2
                 if wartosc(wybor, x0) == 0:
@@ -59,7 +59,7 @@ def siecznych(wybor, poczatek, koniec, iteracje, eps):
 
     else:
         if iteracje == 0:  # d - osiągnięcie zadanej dokładności obliczeń
-            n = 1
+            n = 0
             while abs(koniec - poczatek) >= eps and n < 1000:
                 x0 = sieczna_krok(wybor, poczatek, koniec)
 
