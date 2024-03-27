@@ -14,7 +14,10 @@
 
 # ---------------------------------------------------------------
 
-# creates A|I|b
+# TODO: napisać funkcję weryfikującą czy układ jest oznaczony
+# TODO: jeśli nie to jaki? -> zwróć błąd/log
+
+# tworzy format A|I|b
 def attach_unit_matrix(matrix):
     column_length = len(matrix)
 
@@ -31,6 +34,14 @@ def attach_unit_matrix(matrix):
     return matrix
 
 
+# wyświetla matrix 2D
+def print_m(matrix):
+    for i in matrix:
+        print(i)
+    print()
+
+
+# właściwa metoda rozwiania A|I|b -> I|A^-1|X, gdzie X - rozwiązania
 def gauss_jordan(matrix):
     column_length = len(matrix)
     row_length = len(matrix[0])
@@ -46,29 +57,38 @@ def gauss_jordan(matrix):
         # jeśli kolumna nie jest postaci jednostkowej to:
         for k in range(column_length):
             if k != i:
-                # znajduje wartość kolejną po nowoutworzonej 1
+                # znajduje wartość w kolejnym wierszu
                 coeff_to_zero = matrix[k][i]
-                # dla każego z
-                for j in range(2*column_length + 1):
+
+                # każde pole w danym wierszu jest pomniejszone o (wartość coeff) * (wartość z kolumny wyżej)
+                # działanie równoznaczne z odjęciem od siebie współczynników kolumn,
+                # po uprzednim pomnożeniu np. w1 - 3*w2
+
+                for j in range(2 * column_length + 1):
                     matrix[k][j] -= coeff_to_zero * matrix[i][j]
+
     return matrix
 
 
-# ------------------------------------------------------
+# wyciąga rozwiązania z I|A^-1|X
+def get_solution(matrix):
+    solution = []
+    row_length = len(matrix[0])
 
-test = [
-    [2, 4, 1, 7],
-    [1, 1, 1, 10],
-    [4, 1, 7, 12]
-]
+    for i in matrix:
+        solution.append(i[row_length - 1])
 
-n_x_2n = attach_unit_matrix(test)
+    return solution
 
-for i in n_x_2n:
-    print(i)
 
-print()
-solved = gauss_jordan(n_x_2n)
+# funkcja do wywołania
+def find_solution(matrix):
+    matrix_unit_solution = attach_unit_matrix(matrix)
+    print_m(matrix_unit_solution)
 
-for i in solved:
-    print(i)
+    solved = gauss_jordan(matrix_unit_solution)
+    print_m(solved)
+
+    solution = get_solution(solved)
+
+    return solution

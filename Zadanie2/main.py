@@ -50,3 +50,10 @@ while True:
         break
     else:
         print("Nieprawidłowa opcja. Wybierz ponownie spośród 1, 2 lub 3")
+
+
+# test = [
+#     [3, 3, 1, 12],
+#     [2, 5, 7, 33],
+#     [1, 2, 1, 8]
+# ]
