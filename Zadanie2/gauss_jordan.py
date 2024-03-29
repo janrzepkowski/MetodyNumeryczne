@@ -1,3 +1,7 @@
+from numpy.linalg import matrix_rank
+import numpy as np
+
+
 # NOTES:
 # 3 stany układu równań:
 #  - oznaczony
@@ -12,10 +16,6 @@
 # detA = 0 -> sprzeczny
 # detA != 0 -> oznaczony
 
-# ---------------------------------------------------------------
-
-# TODO: napisać funkcję weryfikującą czy układ jest oznaczony
-# TODO: jeśli nie to jaki? -> zwróć błąd/log
 
 # tworzy format A|I|b
 def attach_unit_matrix(matrix):
@@ -35,9 +35,11 @@ def attach_unit_matrix(matrix):
 
 
 # wyświetla matrix 2D
+# wyświetla matrix 2D
 def print_m(matrix):
     for i in matrix:
-        print(i)
+        rounded_row = [round(num, 4) for num in i]
+        print(rounded_row)
     print()
 
 
@@ -76,19 +78,42 @@ def get_solution(matrix):
     row_length = len(matrix[0])
 
     for i in matrix:
-        solution.append(i[row_length - 1])
+        solution.append(round(i[row_length - 1], 1))  # Zaokrąglenie do liczby z jednym miejscem po przecinku
 
     return solution
 
 
 # funkcja do wywołania
 def find_solution(matrix):
-    matrix_unit_solution = attach_unit_matrix(matrix)
-    print_m(matrix_unit_solution)
+    system_type = check_system(matrix)
+    if system_type == 'oznaczony':
+        matrix_unit_solution = attach_unit_matrix(matrix)
+        print_m(matrix_unit_solution)
 
-    solved = gauss_jordan(matrix_unit_solution)
-    print_m(solved)
+        solved = gauss_jordan(matrix_unit_solution)
+        print_m(solved)
 
-    solution = get_solution(solved)
+        solution = get_solution(solved)
+        print("Układ jest oznaczony. Rozwiązaniem są liczby:", solution)
+        return solution
+    else:
+        print(f"Układ jest {system_type}.")
+        return None
 
-    return solution
+
+def get_rank(matrix):
+    return matrix_rank(np.array(matrix))
+
+
+def check_system(matrix):
+    coeff_matrix = [row[:-1] for row in matrix]
+    coeff_rank = get_rank(coeff_matrix)
+    aug_rank = get_rank(matrix)
+    num_unknowns = len(coeff_matrix[0])
+
+    if coeff_rank == aug_rank == num_unknowns:
+        return 'oznaczony'
+    elif coeff_rank == aug_rank < num_unknowns:
+        return 'nieoznaczony'
+    else:
+        return 'sprzeczny'

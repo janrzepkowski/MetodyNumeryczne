@@ -1,7 +1,5 @@
+from gauss_jordan import find_solution, print_m
 from eksplorator import display_files, open_file
-
-eps = 0
-iter = 0
 
 while True:
     print("\nMenu:")
@@ -31,29 +29,15 @@ while True:
                 print("Nieprawidłowa wartość. Podaj liczbę całkowitą.")
 
         matrix = []
-        vector = []
 
         with open(filename, 'r') as data:
             for line in lines[:N]:
-                coefficients = list(map(int, line.split()))  # Dzieli linię i konwertuje na liczby całkowite
-                matrix.append(coefficients[:-1])  # Dodaje współczynniki do macierzy (bez ostatniego elementu)
-                vector.append(coefficients[-1])  # Dodaje ostatni element jako element wektora
+                coefficients = list(map(float, line.split()))  # Dzieli linię i konwertuje na liczby zmiennoprzecinkowe
+                matrix.append(coefficients)  # Dodaje całą linię do macierzy
 
-        print("Macierz współczynników:")
-        for row in matrix:
-            print(row)
-
-        print("Wektor wyrazów wolnych:")
-        print(vector)
+        solution = find_solution(matrix)
 
     elif choice == '3':
         break
     else:
         print("Nieprawidłowa opcja. Wybierz ponownie spośród 1, 2 lub 3")
-
-
-# test = [
-#     [3, 3, 1, 12],
-#     [2, 5, 7, 33],
-#     [1, 2, 1, 8]
-# ]
