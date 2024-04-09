@@ -13,7 +13,7 @@ while True:
         display_files()
     elif choice == '2':
         filename = input("Podaj nazwę pliku do otwarcia: ")
-        filename = open_file(filename)  # Przypisanie poprawnej nazwy pliku zwróconej przez funkcję open_file
+        filename = open_file("txt/" + filename)  # Przypisanie poprawnej nazwy pliku zwróconej przez funkcję open_file
 
         while True:
             N = input("Podaj z ilu równań ma składać się układ: ")

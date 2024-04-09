@@ -1,5 +1,6 @@
 import os
 
+
 def display_files():
     files = [f for f in os.listdir() if os.path.isfile(f) and f.endswith('.txt')]
     if not files:
@@ -8,6 +9,7 @@ def display_files():
     print("Dostępne pliki tekstowe:")
     for idx, file in enumerate(files, 1):
         print(f"{idx}. {file}")
+
 
 def open_file(filename):
     while True:
