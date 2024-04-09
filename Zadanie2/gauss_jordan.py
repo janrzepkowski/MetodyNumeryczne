@@ -49,23 +49,27 @@ def gauss_jordan(matrix):
     row_length = len(matrix[0])
 
     for i in range(column_length):
-        # jeśli na przekątnej nie ma 1, to dzieli wiersz przez tę liczbę
-        if matrix[i][i] != 1:
-            i_value = matrix[i][i]
+        # Jeśli na przekątnej jest 0, zamień wiersze
+        if matrix[i][i] == 0:
+            for j in range(i+1, column_length):
+                if matrix[j][i] != 0:
+                    matrix[i], matrix[j] = matrix[j], matrix[i]
+                    break
+            else:
+                continue
 
-            for j in range(row_length):
-                matrix[i][j] /= i_value
+        # Jeśli na przekątnej nie ma 1, to dzieli wiersz przez tę liczbę
+        i_value = matrix[i][i]
+        for j in range(row_length):
+            matrix[i][j] /= i_value
 
-        # jeśli kolumna nie jest postaci jednostkowej to:
+        # Jeśli kolumna nie jest postaci jednostkowej to:
         for k in range(column_length):
             if k != i:
                 # znajduje wartość w kolejnym wierszu
                 coeff_to_zero = matrix[k][i]
 
                 # każde pole w danym wierszu jest pomniejszone o (wartość coeff) * (wartość z kolumny wyżej)
-                # działanie równoznaczne z odjęciem od siebie współczynników kolumn,
-                # po uprzednim pomnożeniu np. w1 - 3*w2
-
                 for j in range(2 * column_length + 1):
                     matrix[k][j] -= coeff_to_zero * matrix[i][j]
 
