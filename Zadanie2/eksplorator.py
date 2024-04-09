@@ -2,7 +2,8 @@ import os
 
 
 def display_files():
-    files = [f for f in os.listdir() if os.path.isfile(f) and f.endswith('.txt')]
+    directory = 'txt/'
+    files = [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f)) and f.endswith('.txt')]
     if not files:
         print("Brak plików tekstowych w bieżącym katalogu.")
         return
