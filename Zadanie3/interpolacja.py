@@ -1,34 +1,42 @@
-from math import prod
+import numpy as np
 
 
 def equidistant_nodes(a, b, n):
-    """
-        a: poczatek przedzialu
-        b: koniec przedzialu
-        n: liczba wezlow
-        return: lista rownoodleglych wezlow
-    """
-    return [a + i * (b - a) / (n - 1) for i in range(n)]
+    return np.linspace(a, b, n)
 
 
-def divided_differences(nodes_x, nodes_y):
-    n = len(nodes_x)
-    coef = nodes_y[:]
-    for i in range(1, n):
-        for j in range(n - 1, i - 1, -1):
-            coef[j] = (coef[j] - coef[j - 1]) / (nodes_x[j] - nodes_x[j - i])
-    return coef
+def interpolation_coefficients(node_x, node_y):
+    n = len(node_y)
+    h = abs(node_x[1] - node_x[0])
+    pascal_triangle = np.zeros([n, n])
+    pascal_triangle[:, 0] = 1
+    np.fill_diagonal(pascal_triangle, 1)
+
+    for i in range(2, n):
+        for j in range(1, i + 1):
+            pascal_triangle[i][j] = pascal_triangle[i - 1][j - 1] + pascal_triangle[i - 1][j]
+
+    coef = [node_y[0]]
+    strong = 1
+    for k in range(1, n):
+        total = 0
+        for i in range(k + 1):
+            tmp = node_y[i] * pascal_triangle[k][i]
+            if (k - i) % 2 == 1: tmp *= -1
+            total += tmp
+        coef.append(total / strong)
+        strong *= k + 1
+
+    return coef, h
 
 
-def newton_interpolation(x, nodes_x, nodes_y):
-    coef = divided_differences(nodes_x, nodes_y)
-    n = len(nodes_x)
-    return sum(coef[i] * prod(x - nodes_x[j] for j in range(i)) for i in range(n))
+def interpolation_value(node_x, coef, h, x):
+    result = 0
+    t = (x - node_x[0]) / h
+    for i in range(len(node_x)):
+        tmp = coef[i]
+        for j in range(i):
+            tmp *= t - j
+        result += tmp
 
-
-print(newton_interpolation(0.5, [-5, -1, 0, 2], [-2, 6, 1, 3]))
-"""
-    dziala obliczanie wartosci w punkcie dla interpolacji newtona
-    sprawdzalem na tej stronce i ten sam wynik https://www.dcode.fr/newton-interpolating-polynomial
-    nie wiem do konca jak to sie zgadza z poleceniem ale chyba solver to solver
-"""
+    return result

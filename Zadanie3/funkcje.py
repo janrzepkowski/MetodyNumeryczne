@@ -29,15 +29,30 @@ def horner(coefficients, x):
     return y
 
 
-def value(choice, x):
-    if choice == "1":
-        return linear(x)
-    elif choice == "2":
-        return absolute(x)
-    elif choice == "3":
-        return polynomial(x)
-    elif choice == "4":
-        return trigonometric(x)
-    elif choice == "5":
-        return rational(x)
-    return 0
+'''
+0. wielomianowa (horner)
+1. liniowa
+2. |x|
+3. trygonometryczna
+4. złożenie
+'''
+
+functions = [
+    # 0:
+    ["TODO", polynomial],
+    # 1:
+    ["dodac", linear],
+    # 2:
+    ["ciekawe", absolute],
+    # 3:
+    ["funkcje", trigonometric],
+    # 4:
+    ["TODO", rational],
+]
+
+
+def print_function():
+    for i in range(len(functions)):
+        print(str(i) + ". " + functions[i][0])
+    i = int(input("Wybierz funkcję: "))
+    return functions[i][0], functions[i][1]
