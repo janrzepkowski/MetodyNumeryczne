@@ -35,7 +35,6 @@ def attach_unit_matrix(matrix):
 
 
 # wyświetla matrix 2D
-# wyświetla matrix 2D
 def print_m(matrix):
     for i in matrix:
         rounded_row = [round(num, 4) for num in i]
