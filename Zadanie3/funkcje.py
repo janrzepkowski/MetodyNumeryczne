@@ -1,5 +1,8 @@
 import numpy as np
 
+is_input = False
+coeffs = []
+
 
 def linear(x):
     return 2 * x - 3
@@ -29,13 +32,22 @@ def horner(coefficients, x):
     return y
 
 
-'''
-0. wielomianowa (horner)
-1. liniowa
-2. |x|
-3. trygonometryczna
-4. złożenie
-'''
+def poly_by_hand(x):
+    global is_input
+    global coeffs
+    if not is_input:
+        is_input = True
+
+        size = int(input("Wprowadz stopien wielomianu [1,...]: "))
+        coeffs = list(range(size + 1))
+
+        for i in range(size):
+            coeffs[i] = float(input("Podaj wartość kolejnych współczynników: "))
+
+        print(coeffs)
+
+    return horner(coeffs, x)
+
 
 functions = [
     # 0:
@@ -48,6 +60,8 @@ functions = [
     ["trygonometryczna", trigonometric],
     # 4:
     ["złożenie", rational],
+    # 5:
+    ["z ręki", poly_by_hand]
 ]
 
 
