@@ -39,15 +39,15 @@ def horner(coefficients, x):
 
 functions = [
     # 0:
-    ["TODO", polynomial],
+    ["wielomianowa", polynomial],
     # 1:
-    ["dodac", linear],
+    ["liniowa", linear],
     # 2:
-    ["ciekawe", absolute],
+    ["|x|", absolute],
     # 3:
-    ["funkcje", trigonometric],
+    ["trygonometryczna", trigonometric],
     # 4:
-    ["TODO", rational],
+    ["złożenie", rational],
 ]
 
 
