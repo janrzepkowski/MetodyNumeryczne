@@ -55,7 +55,7 @@ functions = [
     # 1:
     ["liniowa", linear],
     # 2:
-    ["|x|", absolute],
+    ["|x - 5|", absolute],
     # 3:
     ["trygonometryczna", trigonometric],
     # 4:

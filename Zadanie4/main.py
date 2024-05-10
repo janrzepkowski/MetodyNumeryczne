@@ -1,6 +1,7 @@
 from Zadanie4.funkcje import wartosc
 from Zadanie4.metody import newton_cotes
 
+
 def main():
     print("Wybierz funkcję do obliczenia:")
     print("0: wielomian wprowadzony ręcznie")
@@ -19,6 +20,7 @@ def main():
     wynik, ilosc_podprzedzialow = newton_cotes(funkcja, a, b, dokladnosc)
 
     print(f"Wynik: {wynik}, użyto {ilosc_podprzedzialow} podprzedziałów")
+
 
 if __name__ == "__main__":
     main()

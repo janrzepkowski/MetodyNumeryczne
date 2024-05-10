@@ -20,11 +20,14 @@ def poly_by_hand(x):
 
     return horner(coeffs, x)
 
+
 def absolute(x):
     return abs(x - 5)
 
+
 def linear(x):
     return 2 * x - 3
+
 
 def polynomial(x):
     coefficients = [1, 0, -60]
@@ -47,17 +50,18 @@ def horner(coefficients, x):
 
 
 def wartosc(wybor, x):
-    if wybor == "0":
-        return poly_by_hand(x)
-    elif wybor == "1":
-        return polynomial(x)
-    elif wybor == "2":
-        return trigonometric(x)
-    elif wybor == "3":
-        return exponential(x)
-    elif wybor == "4":
-        return linear(x)
-    elif wybor == "5":
-        return absolute(x)
-
-    return 0
+    match wybor:
+        case "0":
+            return poly_by_hand(x)
+        case "1":
+            return polynomial(x)
+        case "2":
+            return trigonometric(x)
+        case "3":
+            return exponential(x)
+        case "4":
+            return linear(x)
+        case "5":
+            return absolute(x)
+        case _:
+            return 0
