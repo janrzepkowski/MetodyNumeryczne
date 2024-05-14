@@ -23,5 +23,38 @@ def main():
     print(f"Wynik dla metody Gaussa-Laguerre: {wynik_gauss}, użyto {liczba_wezlow} węzłów")
 
 
+def research():
+    for fun in range(1, 6):
+        if fun == 3:
+            continue
+        fun = str(fun)
+        print(f"FUNKCJA: {fun}")
+        wynik_newton = newton_cotes(fun, 0.001)
+        print(f"Wynik newton: {wynik_newton}")
+        for liczba_wezlow in range(2, 6):
+            wynik_gauss = gauss(fun, liczba_wezlow)
+            print(f"Wynik gauss: {wynik_gauss} dla {liczba_wezlow} wezlow")
+            blad = abs(wynik_newton - wynik_gauss)
+            print(f"Blad: {blad}")
+        print("-------------------")
+
+
+def choose():
+    print("Wybierz ")
+    print("1. research")
+    print("2. testowanie przypadku")
+
+    choice = input("Wybór: ")
+
+    match choice:
+        case "1":
+            research()
+        case "2":
+            main()
+        case _:
+            print("choose correct option")
+            choose()
+
+
 if __name__ == "__main__":
-    main()
+    choose()
