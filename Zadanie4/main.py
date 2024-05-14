@@ -1,6 +1,6 @@
 from Zadanie4.funkcje import wartosc
 from Zadanie4.metody import newton_cotes
-from Zadanie4.metody import gauss_laguerre
+from Zadanie4.metody import gauss as gauss
 
 
 def main():
@@ -22,10 +22,10 @@ def main():
 
     print(f"Wynik dla Newtona-Cotesa: {wynik}, użyto {ilosc_podprzedzialow} podprzedziałów")
 
-    nodes = int(input("Podaj liczbę węzłów dla metody Gaussa-Laguerra: "))
-    gauss_value = gauss_laguerre(funkcja, nodes)
+    liczba_wezlow = int(input("Podaj liczbę węzłów dla metody Gaussa-Laguerre: "))
+    wynik_gauss = gauss(wybor, liczba_wezlow)
 
-    print(f"Wynik dla Gaussa: {gauss_value}, użyto {nodes} węzłów")
+    print(f"Wynik dla metody Gaussa-Laguerre: {wynik_gauss}, użyto {liczba_wezlow} węzłów")
 
 
 if __name__ == "__main__":
