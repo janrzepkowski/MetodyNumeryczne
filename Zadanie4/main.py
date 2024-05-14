@@ -1,14 +1,15 @@
 from Zadanie4.funkcje import wartosc
 from Zadanie4.metody import newton_cotes
 
+
 def main():
     print("Wybierz funkcję do obliczenia:")
-    print("0: wielomian wprowadzony ręcznie")
-    print("1: wielomian predefiniowany")
-    print("2: funkcja trygonometryczna")
-    print("3: funkcja wykładnicza")
-    print("4: funkcja liniowa")
-    print("5: wartość absolutna")
+    print("0. Wielomian wprowadzony ręcznie")
+    print("1. Wielomian predefiniowany: x^2 - 60")
+    print("2. Funkcja trygonometryczna: 4sin(x) - 2cos(x)")
+    print("3. Funkcja wykładnicza: 2^x - 4^x")
+    print("4. Funkcja liniowa: 2x - 3")
+    print("5. Funkcja bezwzględna: |x - 5|")
 
     wybor = input("Twój wybór: ")
     a = float(input("Podaj początek przedziału: "))
@@ -19,6 +20,7 @@ def main():
     wynik, ilosc_podprzedzialow = newton_cotes(funkcja, a, b, dokladnosc)
 
     print(f"Wynik: {wynik}, użyto {ilosc_podprzedzialow} podprzedziałów")
+
 
 if __name__ == "__main__":
     main()

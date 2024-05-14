@@ -20,11 +20,14 @@ def poly_by_hand(x):
 
     return horner(coeffs, x)
 
+
 def absolute(x):
     return abs(x - 5)
 
+
 def linear(x):
     return 2 * x - 3
+
 
 def polynomial(x):
     coefficients = [1, 0, -60]
