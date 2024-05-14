@@ -1,56 +1,50 @@
-import numpy as np
 from Zadanie4.funkcje import wartosc
+import numpy as np
 
 
-def oblicz_wartosci(funkcja, a, b, ilosc_podprzedzialow):
-    h = (b - a) / ilosc_podprzedzialow
-    x = np.linspace(a, b, ilosc_podprzedzialow + 1)
-    wartosci = funkcja(x)
-    return wartosci, h
+def metoda_simpsona(a, b, funkcja):
+    h = (b - a) / 2
+    calka = (np.exp(-a) * wartosc(funkcja, a)
+             + 4 * np.exp(-(a + b) / 2) * wartosc(funkcja, ((a + b) / 2))
+             + np.exp(-b) * wartosc(funkcja, b)) * h / 3
+    return calka
 
 
-def oblicz_kwadrature(wartosci, h):
-    wynik = wartosci[0] + wartosci[-1] + 4 * np.sum(wartosci[1:-1:2]) + 2 * np.sum(wartosci[2:-1:2])
-    wynik *= h / 3
-    return wynik
+def zlozona_metoda_simpsona(poczatek, koniec, funkcja, dokladnosc):
+    calka = metoda_simpsona(poczatek, koniec, funkcja)
+    warunek = True
+    n = 2
+    while warunek:
+        nowa_calka = 0
+        h = (koniec - poczatek) / (2 * n)
+        a = poczatek
+        b = a + 2 * h
+        for i in range(n):
+            i = metoda_simpsona(a, b, funkcja)
+            nowa_calka += i
+            a = b
+            b += 2 * h
+        if abs(nowa_calka - calka) < dokladnosc:
+            warunek = False
+            calka = nowa_calka
+        else:
+            calka = nowa_calka
+            n += 1
+    return calka
 
 
-def newton_cotes(funkcja, a, b, dokladnosc):
-    ilosc_podprzedzialow = 2
-    stary_wynik = 0
-    while True:
-        wartosci, h = oblicz_wartosci(funkcja, a, b, ilosc_podprzedzialow)
-        wynik = oblicz_kwadrature(wartosci, h)
-        if abs(stary_wynik - wynik) < dokladnosc:
-            return wynik, ilosc_podprzedzialow
-        ilosc_podprzedzialow *= 2
-        stary_wynik = wynik
-
-
-# całkowanie metodą kwadratury gaussa:
-# przedział: [0,+∞)
-# waga: e^-x z pliku dla x
-
-# def gauss_laguerre(function, nodes):
-#     _sum = 0
-#     _sum_values = 0
-#     data = file.read_file()[nodes - 2]
-#     for n in range(nodes):
-#         wage = data[n][0]
-#         x = data[n][1]
-#         value = function(x)
-#         _sum += wage * value
-#         _sum_values += value
-#         # print(wage, x, value)
-#     # print(_sum_values)
-#     return _sum
-#
-#
-# # test
-# from Zadanie4.funkcje import linear
-# funkcja = lambda x: linear(x)
-# for i in range(2, 50):
-#     print(gauss_laguerre(funkcja, i))
+def newton_cotes(funkcja, dokladnosc):
+    a = 0
+    delta = 1
+    suma = 0
+    flag = True
+    while flag:
+        calka = zlozona_metoda_simpsona(a, a + delta, funkcja, dokladnosc)
+        suma += calka
+        a += delta
+        if abs(calka) <= abs(dokladnosc):
+            flag = False
+    return suma
 
 
 def wspolczynniki(liczba_wezlow, numer_wezla):
@@ -63,10 +57,10 @@ def wspolczynniki(liczba_wezlow, numer_wezla):
     return dane[liczba_wezlow - 2][numer_wezla]
 
 
-def gauss(wybor_funkcji, liczba_wezlow):
+def gauss(funkcja, liczba_wezlow):
     wynik = 0
     for i in range(liczba_wezlow):
         x = (wspolczynniki(liczba_wezlow, i)[0])
         w = (wspolczynniki(liczba_wezlow, i)[1])
-        wynik += w * wartosc(wybor_funkcji, x)
+        wynik += w * wartosc(funkcja, x)
     return wynik

@@ -1,6 +1,4 @@
-from Zadanie4.funkcje import wartosc
-from Zadanie4.metody import newton_cotes
-from Zadanie4.metody import gauss as gauss
+from Zadanie4.metody import newton_cotes, gauss
 
 
 def main():
@@ -13,14 +11,11 @@ def main():
     print("5. Funkcja bezwzględna: |x - 5|")
 
     wybor = input("Twój wybór: ")
-    a = float(input("Podaj początek przedziału: "))
-    b = float(input("Podaj koniec przedziału: "))
     dokladnosc = float(input("Podaj dokładność: "))
 
-    funkcja = lambda x: wartosc(wybor, x)
-    wynik, ilosc_podprzedzialow = newton_cotes(funkcja, a, b, dokladnosc)
+    wynik_newton = newton_cotes(wybor, dokladnosc)  # Używamy funkcji newton_cotes
 
-    print(f"Wynik dla Newtona-Cotesa: {wynik}, użyto {ilosc_podprzedzialow} podprzedziałów")
+    print(f"Wynik dla Newtona-Cotesa: {wynik_newton}")
 
     liczba_wezlow = int(input("Podaj liczbę węzłów dla metody Gaussa-Laguerre: "))
     wynik_gauss = gauss(wybor, liczba_wezlow)
