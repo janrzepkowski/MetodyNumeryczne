@@ -1,4 +1,5 @@
 from Zadanie4.metody import newton_cotes, gauss
+from Zadanie4.plot import plot_draw
 
 
 def main():
@@ -12,6 +13,8 @@ def main():
 
     wybor = input("Twój wybór: ")
     dokladnosc = float(input("Podaj dokładność: "))
+
+    plot_draw(wybor)
 
     wynik_newton = newton_cotes(wybor, dokladnosc)  # Używamy funkcji newton_cotes
 
@@ -28,6 +31,7 @@ def research():
         if fun == 3:
             continue
         fun = str(fun)
+        plot_draw(fun)
         print(f"FUNKCJA: {fun}")
         wynik_newton = newton_cotes(fun, 0.001)
         print(f"Wynik newton: {wynik_newton}")
