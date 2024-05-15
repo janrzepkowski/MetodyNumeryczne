@@ -49,6 +49,10 @@ def horner(coefficients, x):
     return y
 
 
+def tryg(x):
+    return np.cos(x) * np.cos(x) + 2 * np.cos(x)
+
+
 def wartosc(wybor, x):
     match wybor:
         case "0":
@@ -63,5 +67,7 @@ def wartosc(wybor, x):
             return linear(x)
         case "5":
             return absolute(x)
+        case "6":
+            return tryg(x)
         case _:
             return 0
