@@ -1,3 +1,9 @@
+from sympy import symbols
+
+from Zadanie5.calkowanie import gauss_czybyszew
+from Zadanie5.funkcje import wartosc
+
+
 def main():
     print("Wybierz aproksymowaną funkcję:")
     print("1. Funkcja liniowa: 2x - 3")
@@ -8,14 +14,22 @@ def main():
     print("6. Złożenie funkcji: 2x - cos(x) + 3")
 
     wybor = input("Twój wybór: ")
+    x = symbols('x')
+    funkcja = wartosc(wybor, x)
     a = float(input("Wprowadź początek przedziału aproksymacji: "))
     b = float(input("Wprowadź koniec przedziału aproksymacji: "))
     tryb = input("Wybierz tryb pracy: \n1. Program dobiera stopień wielomianu\n2. Wprowadź stopień wielomianu: ")
 
     if tryb == "1":
         epsilon = float(input("Wprowadź oczekiwany błąd aproksymacji: "))
+
     if tryb == "2":
         stopien = int(input("Wprowadź stopień wielomianu aproksymującego: "))
+        wezly = int(input("Wprowadź ilość węzłów: "))
+
+        # Testowanie całkowania Gaussa-Czybyszewa
+        wynik = gauss_czybyszew(funkcja, wezly)
+        print("Wynik całkowania Gaussa-Czybyszewa: ", wynik)
 
 
 if __name__ == "__main__":
