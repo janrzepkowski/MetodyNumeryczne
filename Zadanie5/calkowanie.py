@@ -13,4 +13,4 @@ def gauss_czybyszew(wybor, wezly):
     wynik = sp.simplify(x - x)
     for i in range(wezly):
         wynik += x_i[i] * wybor.subs(x, A_i[i])
-    return wynik / (3.14159265358979323846 / 2)
+    return wynik

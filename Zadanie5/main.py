@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from Zadanie5.calkowanie import gauss_czybyszew
+from Zadanie5.aproksymacja import aproksymacja
 from Zadanie5.funkcje import wartosc
 
 
@@ -27,9 +27,8 @@ def main():
         stopien = int(input("Wprowadź stopień wielomianu aproksymującego: "))
         wezly = int(input("Wprowadź ilość węzłów: "))
 
-        # Testowanie całkowania Gaussa-Czybyszewa
-        wynik = gauss_czybyszew(funkcja, wezly)
-        print("Wynik całkowania Gaussa-Czybyszewa: ", wynik)
+        wynik = aproksymacja(funkcja, stopien + 1, wezly)
+        print("Wielomian aproksymujący: ", wynik)
 
 
 if __name__ == "__main__":
