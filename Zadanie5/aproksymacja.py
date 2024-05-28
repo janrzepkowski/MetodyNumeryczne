@@ -29,6 +29,17 @@ def aproksymacja(funkcja, stopien, wezly):
     return wynik
 
 
+def blad(a, b, funkcja, stopien, wezly):
+    x = Symbol('x')
+    y_x = aproksymacja(funkcja, stopien, wezly)
+    suma = simplify(x - x)
+    punkty = np.linspace(a, b, stopien)
+    for p in punkty:
+        suma += (funkcja.subs(x, p) - y_x.subs(x, p)) ** 2
+    wynik = simplify(sqrt(suma))
+    return wynik / 100
+
+
 def wykresy(a, b, funkcja, stopien, wezly):
     x = Symbol('x')
     apro = aproksymacja(funkcja, stopien, wezly)

@@ -1,16 +1,16 @@
 from sympy import symbols
 
-from Zadanie5.aproksymacja import aproksymacja, wykresy
+from Zadanie5.aproksymacja import aproksymacja, wykresy, blad
 from Zadanie5.funkcje import wartosc
 
 
 def main():
     print("Wybierz aproksymowaną funkcję:")
     print("1. Funkcja liniowa: 2x - 3")
-    print("2. Funkcja bezwzględna: |x - 5|")
+    print("2. Funkcja bezwzględna: |x|")
     print("3. Wielomian predefiniowany: x^2 - 60")
     print("4. Wielomian wprowadzony ręcznie")
-    print("5. Funkcja trygonometryczna: 4sin(x) - 2cos(x)")
+    print("5. Funkcja trygonometryczna: sin(x)")
     print("6. Złożenie funkcji: 2x - cos(x) + 3")
 
     wybor = input("Twój wybór: ")
@@ -29,6 +29,8 @@ def main():
 
         wynik = aproksymacja(funkcja, stopien + 1, wezly)
         print("Wielomian aproksymujący: ", wynik)
+        bld = blad(a, b, funkcja, stopien, wezly)
+        print("Błąd aproksymacji: ", bld)
 
         wykresy(a, b, funkcja, stopien + 1, wezly)
 
