@@ -1,4 +1,4 @@
-import numpy as np
+import sympy as sp
 
 is_input = False
 coeffs = []
@@ -26,7 +26,7 @@ def linear(x):
 
 
 def absolute(x):
-    return abs(x - 5)
+    return abs(x)
 
 
 def polynomial(x):
@@ -35,11 +35,11 @@ def polynomial(x):
 
 
 def trigonometric(x):
-    return 4 * np.sin(x) - 2 * np.cos(x)
+    return sp.sin(x)
 
 
 def rational(x):
-    return 2 * x - np.cos(x) + 3
+    return 2 * x - sp.cos(x) + 3
 
 
 def horner(coefficients, x):

@@ -1,6 +1,6 @@
 from sympy import symbols
 
-from Zadanie5.aproksymacja import aproksymacja
+from Zadanie5.aproksymacja import aproksymacja, wykresy
 from Zadanie5.funkcje import wartosc
 
 
@@ -30,6 +30,7 @@ def main():
         wynik = aproksymacja(funkcja, stopien + 1, wezly)
         print("Wielomian aproksymujący: ", wynik)
 
+        wykresy(a, b, funkcja, stopien + 1, wezly)
 
 if __name__ == "__main__":
     main()
