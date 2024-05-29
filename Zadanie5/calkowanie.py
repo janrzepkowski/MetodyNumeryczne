@@ -7,7 +7,7 @@ def wspolczynniki(wezly):
     return A_i, x_i
 
 
-def gauss_czybyszew(wybor, wezly):
+def gauss_czebyszew(wybor, wezly):
     x = sp.Symbol('x')
     A_i, x_i = wspolczynniki(wezly)
     wynik = sp.simplify(x - x)

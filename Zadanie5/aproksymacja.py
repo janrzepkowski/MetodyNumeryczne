@@ -2,7 +2,7 @@ import numpy as np
 from sympy import *
 from matplotlib import pyplot as plt
 
-from calkowanie import gauss_czybyszew
+from calkowanie import gauss_czebyszew
 
 
 def wielomian_czybyszewa(stopien):
@@ -19,7 +19,7 @@ def aproksymacja(funkcja, stopien, wezly):
     wynik = simplify(x - x)
     for i in range(stopien):
         temp = simplify(funkcja * T_k[i])  # Ze wzoru wx * fx * Tx
-        calka = gauss_czybyszew(temp, wezly) # całkujemy na warunek ortogonalnosci
+        calka = gauss_czebyszew(temp, wezly)  # całkujemy na warunek ortogonalnosci
         if i == 0:
             calka = calka / 3.141592653589793
         else:

@@ -18,21 +18,21 @@ def main():
     funkcja = wartosc(wybor, x)
     a = float(input("Wprowadź początek przedziału aproksymacji: "))
     b = float(input("Wprowadź koniec przedziału aproksymacji: "))
-    tryb = input("Wybierz tryb pracy: \n1. Program dobiera stopień wielomianu\n2. Wprowadź stopień wielomianu: ")
+    # tryb = input("Wybierz tryb pracy: \n1. Program dobiera stopień wielomianu\n2. Wprowadź stopień wielomianu: ")
+    #
+    # if tryb == "1":
+    #     epsilon = float(input("Wprowadź oczekiwany błąd aproksymacji: "))
+    #
+    # if tryb == "2":
+    stopien = int(input("Wprowadź stopień wielomianu aproksymującego: "))
+    wezly = int(input("Wprowadź ilość węzłów: "))
 
-    if tryb == "1":
-        epsilon = float(input("Wprowadź oczekiwany błąd aproksymacji: "))
+    wynik = aproksymacja(funkcja, stopien + 1, wezly)
+    print("Wielomian aproksymujący: ", wynik)
+    bld = blad(a, b, funkcja, stopien, wezly)
+    print("Błąd aproksymacji: ", bld)
 
-    if tryb == "2":
-        stopien = int(input("Wprowadź stopień wielomianu aproksymującego: "))
-        wezly = int(input("Wprowadź ilość węzłów: "))
-
-        wynik = aproksymacja(funkcja, stopien + 1, wezly)
-        print("Wielomian aproksymujący: ", wynik)
-        bld = blad(a, b, funkcja, stopien, wezly)
-        print("Błąd aproksymacji: ", bld)
-
-        wykresy(a, b, funkcja, stopien + 1, wezly)
+    wykresy(a, b, funkcja, stopien + 1, wezly)
 
 if __name__ == "__main__":
     main()
